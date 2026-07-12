@@ -1,0 +1,160 @@
+aid: bruno-api
+url: https://raw.githubusercontent.com/api-evangelist/bruno-api/refs/heads/main/apis.yml
+name: Bruno
+kind: company
+description: >-
+  Bruno is an open-source (MIT), git-native API client - a lightweight,
+  offline-first alternative to Postman and Insomnia for exploring and testing
+  APIs. It is a developer TOOL, not a hosted HTTP API provider. Collections are
+  stored on the local filesystem as folders of plain-text files (the .bru "Bru"
+  markup language, with OpenCollection YAML now recommended for new
+  collections), so API requests are version-controlled in Git alongside code.
+  Bruno sends HTTP, REST, GraphQL, and gRPC requests, manages environments and
+  variables, and runs pre-request/post-response scripts, tests, and assertions.
+  The @usebruno/cli command-line runner (bru) executes collections headlessly in
+  CI/CD with JSON, JUnit, and HTML reporters. Bruno is offline-only and does not
+  sync request data to a Bruno-hosted cloud; paid Pro/Ultimate tiers add native
+  in-app Git integration, OpenAPI sync, and enterprise admin controls that run
+  through your own Git provider and identity systems. Bruno does not expose a
+  documented public REST HTTP API.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- API Client
+- API Testing
+- Developer Tools
+- Open Source
+- Git-Native
+- CLI
+- Postman Alternative
+created: '2026-07-11'
+modified: '2026-07-11'
+specificationVersion: '0.19'
+apis:
+- aid: bruno-api:bruno-api-client
+  name: Bruno API Client
+  tags:
+  - API Client
+  - API Testing
+  - Developer Tools
+  - REST
+  - GraphQL
+  - gRPC
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.usebruno.com/introduction/what-is-bruno
+  properties:
+  - url: https://docs.usebruno.com/
+    type: Documentation
+  - url: https://github.com/usebruno/bruno
+    type: SourceCode
+  description: >-
+    The core open-source, git-native desktop API client (a lightweight
+    Postman/Insomnia alternative). Compose and send HTTP, REST, GraphQL, and
+    gRPC requests, organize them into collections, manage environments and
+    variables, and write pre-request/post-response scripts plus tests and
+    assertions. Offline-only with no cloud sync of request data. This is a
+    client application, not a hosted API - it has no baseURL or public HTTP
+    endpoints of its own.
+- aid: bruno-api:bruno-bru-language
+  name: Bru Markup Language (.bru)
+  tags:
+  - File Format
+  - Collections
+  - Git-Native
+  - Open Source
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.usebruno.com/bru-lang/overview
+  properties:
+  - url: https://docs.usebruno.com/bru-lang/overview
+    type: Documentation
+  - url: https://github.com/usebruno/bruno
+    type: SourceCode
+  description: >-
+    Bru is Bruno's plain-text domain-specific markup language. Each request is
+    stored as a .bru file capturing the HTTP method, URL, query params, headers,
+    body, authentication, scripts, tests, assertions, and variables, so a
+    collection is a folder of human-readable text files reviewable in Git pull
+    requests. A logical artifact/file format modeled as a capability area - not
+    an HTTP endpoint.
+- aid: bruno-api:bruno-opencollection
+  name: OpenCollection Format
+  tags:
+  - Collections
+  - Open Standard
+  - YAML
+  - Portability
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.usebruno.com/
+  properties:
+  - url: https://docs.usebruno.com/
+    type: Documentation
+  description: >-
+    OpenCollection is the open, YAML-based collection format Bruno now
+    recommends for new collections as an alternative representation to .bru.
+    Like .bru it stores requests, folders, auth, and scripts as version-friendly
+    text. A file/interchange format modeled as a capability area - not a hosted
+    API surface.
+- aid: bruno-api:bruno-cli
+  name: Bruno CLI (bru)
+  tags:
+  - CLI
+  - API Testing
+  - CI/CD
+  - Automation
+  - Developer Tools
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.usebruno.com/bru-cli/overview
+  properties:
+  - url: https://docs.usebruno.com/bru-cli/overview
+    type: Documentation
+  - url: https://github.com/usebruno/bruno
+    type: SourceCode
+  description: >-
+    The @usebruno/cli command-line runner (invoked as bru, installed via
+    npm install -g @usebruno/cli) executes individual requests or entire
+    collections headlessly for CI/CD, with JSON, JUnit, and HTML test reporters,
+    environment selection, and assertions. Since v3.0.0 it defaults to Safe Mode
+    for security; Developer Mode features (filesystem access, external npm
+    packages) require the --sandbox=developer flag. A local CLI tool, not a
+    hosted API.
+- aid: bruno-api:bruno-git-collaboration
+  name: Bruno Git Integration and Sync
+  tags:
+  - Git
+  - Collaboration
+  - Sync
+  - Enterprise
+  - Developer Tools
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.usebruno.com/pricing
+  properties:
+  - url: https://www.usebruno.com/pricing
+    type: Pricing
+  - url: https://docs.usebruno.com/
+    type: Documentation
+  description: >-
+    Paid Bruno (Pro and Ultimate) adds native in-app Git integration and
+    OpenAPI sync (5 syncs/month on Pro, unlimited on Ultimate) plus SSO, SCIM,
+    audit logs, and license/admin controls. Collaboration happens through your
+    own Git provider and identity systems - Bruno stays offline-only and does
+    not sync request data to a Bruno-hosted cloud. Modeled here as a capability
+    area; it is not a documented public API.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/usebruno
+- type: Website
+  url: https://www.usebruno.com/
+- type: Documentation
+  url: https://docs.usebruno.com/
+- type: GitHubOrganization
+  url: https://github.com/usebruno
+- type: Plans
+  url: plans/bruno-api-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/bruno-api-rate-limits.yml
+- type: FinOps
+  url: finops/bruno-api-finops.yml
+- url: https://blog.usebruno.com/
+  type: Blog
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,104 @@
+aid: bruno-api
+name: Bruno
+review:
+  question: Does Bruno expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-11'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Bruno is a client-side developer tool -
+    an open-source, git-native API client (desktop app plus the @usebruno/cli
+    runner) - and does not operate a hosted API of its own. It has no server
+    endpoints, so there is no server-push transport (WebSocket or SSE) on
+    Bruno's side to model. Bruno can itself SEND WebSocket/gRPC/HTTP requests to
+    APIs you target, but that is client behavior against third-party servers,
+    not a Bruno-published WebSocket API.
+findings:
+  summary: |
+    Bruno does not publish a documented public WebSocket API - or any hosted
+    public HTTP/REST API. Bruno is an open-source (MIT) API client, a
+    lightweight offline-first alternative to Postman and Insomnia. It runs as a
+    desktop application and a CLI (@usebruno/cli, invoked as bru), and stores
+    collections as plain-text files on the local filesystem (the .bru Bru markup
+    language, with OpenCollection YAML now recommended for new collections) that
+    are version-controlled in Git. Bruno is offline-only and explicitly does not
+    sync request data to a Bruno-hosted cloud. Its paid Pro/Ultimate tiers add
+    in-app Git integration, OpenAPI sync, SSO/SCIM, and audit logs, but these
+    operate through the customer's own Git provider and identity systems rather
+    than a Bruno public API. No ws:// or wss:// endpoint - and no baseURL for a
+    hosted REST surface - is documented for Bruno itself.
+  productType: |
+    Developer tool / API client (desktop GUI + CLI), open source (MIT),
+    git-native, offline-first. NOT a hosted HTTP API provider. Modeled in
+    apis.yml as logical capability areas (client, .bru format, OpenCollection
+    format, CLI runner, Git integration), none of which has a hosted baseURL.
+  openSource: |
+    The Bruno client is open source under the MIT license at
+    github.com/usebruno/bruno (~45k+ stars; JavaScript/TypeScript plus the Bru
+    DSL). The @usebruno/cli runner is distributed on npm. A commercial company
+    (Bruno / usebruno) offers paid Pro and Ultimate tiers and enterprise
+    support on top of the open-source core.
+  transports:
+    - protocol: None (client tool)
+      scheme: n/a
+      documented: false
+      note: Bruno operates no server-side API. It is installed and run locally; it makes outbound requests to whatever APIs the user targets.
+    - protocol: CLI
+      scheme: local
+      documented: true
+      note: The @usebruno/cli runner (bru) executes collections locally / in CI-CD with JSON, JUnit, and HTML reporters. Local process, not a network API.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: Bruno publishes no WebSocket endpoint. (Bruno as a client can send requests to third-party WebSocket/gRPC/HTTP servers, but exposes none itself.)
+  endpointsModeled:
+    note: |
+      Bruno has no hosted HTTP endpoints. The following are the logical
+      capability surfaces modeled as apis.yml entries, not network endpoints.
+    surfaces:
+      - area: Bruno API Client
+        kind: desktop application
+        operations: compose/send HTTP, REST, GraphQL, gRPC requests; collections; environments; variables; scripts; tests; assertions
+      - area: Bru Markup Language (.bru)
+        kind: plain-text file format / DSL
+        operations: store method, URL, params, headers, body, auth, scripts, tests, vars per request as a version-controlled .bru file
+      - area: OpenCollection Format
+        kind: YAML collection file format
+        operations: open, portable collection representation recommended for new collections
+      - area: Bruno CLI (bru)
+        kind: command-line runner (@usebruno/cli)
+        operations: run request/collection headlessly; select environment; assertions; JSON/JUnit/HTML reporters; --sandbox modes
+      - area: Bruno Git Integration and Sync
+        kind: paid in-app feature
+        operations: native Git integration; OpenAPI sync (5/mo Pro, unlimited Ultimate); SSO, SCIM, audit logs via customer's own systems
+  endpointsConfirmedRest: []
+sources:
+  - url: https://www.usebruno.com/
+    type: Website
+    note: Positions Bruno as an offline-only, git-native API client; "Bruno never syncs any of your data to the cloud." No public API advertised.
+  - url: https://docs.usebruno.com/
+    type: Documentation
+    note: Docs cover the GUI client, .bru/Bru language, OpenCollection, scripting/tests, and the CLI. No hosted API or WebSocket endpoint documented.
+  - url: https://docs.usebruno.com/bru-lang/overview
+    type: Documentation
+    note: Describes the .bru plain-text markup language for storing requests.
+  - url: https://docs.usebruno.com/bru-cli/overview
+    type: Documentation
+    note: Bruno CLI (bru) runs collections in CI/CD with JSON, JUnit, HTML reporters; Safe Mode default since v3.0.0.
+  - url: https://www.usebruno.com/pricing
+    type: Pricing
+    note: Open Source $0, Pro $6/user/mo, Ultimate $11/user/mo (billed annually), plus enterprise support. Paid tiers add Git integration and OpenAPI sync, not a public API.
+  - url: https://github.com/usebruno/bruno
+    type: SourceCode
+    note: Open-source (MIT) desktop API client, JavaScript/TypeScript + Bru DSL. Confirms client tool, offline-only, not a hosted API.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists, and Bruno operates no hosted public
+    API at all - it is a client-side developer tool. No AsyncAPI document was
+    created because there is no server-push transport on Bruno's side to model.
+    The apis.yml models Bruno's logical capability areas (client, .bru,
+    OpenCollection, CLI, Git integration) without inventing a hosted REST or
+    WebSocket surface.

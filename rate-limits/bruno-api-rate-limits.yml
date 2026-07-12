@@ -1,0 +1,69 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Bruno
+providerId: bruno-api
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- API Client
+- API Testing
+- Developer Tools
+- Open Source
+- Rate Limiting
+- Quotas
+description: >-
+  Bruno is a client-side developer tool and operates no hosted public API, so
+  there are no server-side request-rate limits to publish. The Bruno desktop
+  client and the @usebruno/cli runner make outbound requests to whatever APIs
+  you target; any throttling comes from those third-party APIs, not from Bruno.
+  The only Bruno-imposed quotas are product/plan limits on the paid tiers -
+  most notably OpenAPI sync counts and workspace counts - which are seat/plan
+  entitlements rather than API rate limits.
+notes: >-
+  There is no Bruno base URL, no 429 behavior owned by Bruno, and no per-minute
+  API quota, because Bruno publishes no API. Plan limits below reflect the
+  pricing page at review time; verify during reconciliation.
+sources:
+- https://www.usebruno.com/pricing
+- https://docs.usebruno.com/
+- https://github.com/usebruno/bruno
+responseCodes:
+  throttled: none (Bruno operates no hosted API)
+limits:
+- name: Hosted API Requests
+  scope: n/a
+  metric: requests
+  limit: not applicable
+  notes: Bruno publishes no hosted HTTP API; there is no Bruno-owned request-rate limit.
+- name: Workspaces (Open Source)
+  scope: account
+  metric: workspaces
+  limit: 2
+  notes: The free Open Source tier includes 2 workspaces; Ultimate is unlimited.
+- name: OpenAPI Syncs (Pro)
+  scope: account
+  metric: syncs
+  limit: 5 per month
+  notes: The Pro tier includes 5 OpenAPI syncs per month; Ultimate is unlimited.
+- name: License Admins (Pro)
+  scope: account
+  metric: admins
+  limit: 2
+  notes: The Pro tier includes 2 license admins.
+- name: Outbound Request Throttling
+  scope: target-api
+  metric: requests
+  limit: set by the target API
+  notes: Any throttling of requests Bruno sends is enforced by the third-party API being called, not by Bruno.
+policies:
+- name: Client-Side Tool
+  description: Bruno runs locally (desktop app or CLI); it does not sit between you and an API as a hosted service and therefore imposes no network rate limits.
+- name: Respect Target Limits
+  description: When running collections (especially via @usebruno/cli in CI/CD), honor the rate limits, Retry-After headers, and 429 responses of the APIs you are testing.
+- name: Plan Entitlements
+  description: Paid-tier caps (workspaces, OpenAPI syncs, license admins) are subscription entitlements, not API throttles.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

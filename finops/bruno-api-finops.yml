@@ -1,0 +1,91 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Bruno
+providerId: bruno-api
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- API Client
+- API Testing
+- Developer Tools
+- Open Source
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Bruno spend. Bruno is an open-source (MIT) developer tool, not
+  a hosted API, so there is no usage-metered API invoice. The open-source client
+  and the @usebruno/cli runner are free; cost, when present, is subscription
+  (per-seat) spend on the paid Pro and Ultimate tiers or an enterprise support
+  agreement, billed annually in USD. Because Bruno is offline-first and runs
+  locally, there is no vendor-side compute/egress bill either - the tool runs on
+  developer workstations and in your own CI/CD runners.
+notes: >-
+  This is seat-based tooling spend, not API-call metering. Per-seat rates
+  ($6/user/mo Pro, $11/user/mo Ultimate, billed annually) reflect the pricing
+  page at review time; verify during reconciliation. The dominant cost driver is
+  the number of paid seats.
+sources:
+- https://www.usebruno.com/pricing
+- https://www.usebruno.com/
+- https://github.com/usebruno/bruno
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Bruno
+serviceCategory: Developer Tools
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Bruno
+  ServiceCategory: Developer Tools
+  ProviderName: Bruno
+  PublisherName: Bruno
+  InvoiceIssuerName: Bruno
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: paid_seats
+  description: Number of licensed users on Pro or Ultimate, billed per user per month (annual commitment).
+  unit: users
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: openapi_syncs
+  description: OpenAPI syncs consumed against plan entitlement (5/mo on Pro, unlimited on Ultimate). A plan entitlement, not a billed meter.
+  unit: syncs
+  aggregation: sum
+  dimensions:
+  - account
+- name: self_run_compute
+  description: Cost of running Bruno locally and the @usebruno/cli in your own CI/CD runners (no Bruno invoice).
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - deployment
+principles:
+- name: Visibility
+  description: Track paid seat counts per team/tier; the open-source client and CLI incur no vendor cost, only workstation/CI compute.
+- name: Allocation
+  description: Map Pro/Ultimate seats to the teams that need native Git integration, OpenAPI sync, or SSO/SCIM so tooling spend lands on the right cost centers.
+- name: Optimization
+  description: Keep casual users on the free Open Source tier and reserve paid seats for those needing enterprise features; reclaim unused seats at annual renewal.
+- name: Accountability
+  description: Assign a license/admin owner; review seat counts and tier fit at renewal against actual feature usage (Git sync, OpenAPI sync, SSO).
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

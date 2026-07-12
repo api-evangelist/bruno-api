@@ -1,0 +1,133 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Bruno
+providerId: bruno-api
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- API Client
+- API Testing
+- Developer Tools
+- Open Source
+- Plans
+description: >-
+  Bruno is an open-source (MIT) API client that is free forever to download and
+  use; the company also sells paid Pro and Ultimate subscriptions plus
+  enterprise support. Pricing is per user (seat) for the paid tiers, billed
+  annually. This is tooling/seat pricing for a developer tool, not API call
+  metering - Bruno operates no hosted API. Paid tiers unlock native in-app Git
+  integration, OpenAPI sync, and enterprise administration (SSO, SCIM, audit
+  logs). The earlier one-time "Golden Edition" has been discontinued for new
+  purchases; existing Golden Edition licenses remain valid for their holders.
+notes: >-
+  Prices below reflect the usebruno.com/pricing page at review time
+  (per user per month, billed annually). A 14-day Ultimate trial is available
+  with no credit card. Verify current tiers and rates on the pricing page during
+  reconciliation.
+sources:
+- https://www.usebruno.com/pricing
+- https://www.usebruno.com/
+- https://github.com/usebruno/bruno
+plans:
+- id: bruno-open-source
+  name: Open Source
+  type: free
+  description: >-
+    The full open-source (MIT) Bruno API client, free forever. Sends HTTP, REST,
+    GraphQL, and gRPC requests; collections stored as local .bru / OpenCollection
+    files; environments, variables, scripting, tests and assertions; and the
+    @usebruno/cli runner for CI/CD. Includes 2 workspaces and community support.
+  entries:
+  - label: Seats
+    name: open_source_seats
+    type: flat
+    metric: users
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  elements:
+  - name: HTTP REST GraphQL gRPC Client
+  - name: Local Git-Native Collections
+  - name: Scripting Tests and Assertions
+  - name: Bruno CLI (@usebruno/cli)
+  - name: 2 Workspaces
+  - name: Community Support
+- id: bruno-pro
+  name: Pro
+  type: paid
+  description: >-
+    Everything in Open Source plus native in-app Git integration with full UI,
+    5 OpenAPI syncs per month, 2 license admins, and email/chat support with a
+    48-hour SLA. Priced per user, billed annually.
+  entries:
+  - label: Per User Per Month (billed annually)
+    name: pro_seat
+    type: flat
+    metric: users
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '$6 per user per month (billed annually)'
+    userMultiplied: true
+  elements:
+  - name: Native Git Integration
+  - name: 5 OpenAPI Syncs per Month
+  - name: 2 License Admins
+  - name: Email and Chat Support (48h SLA)
+- id: bruno-ultimate
+  name: Ultimate
+  type: paid
+  description: >-
+    Everything in Pro plus unlimited workspaces and OpenAPI syncs, user and
+    license management, CSV upload, audit logs, SSO and SCIM, custom ToS/DPA, a
+    dedicated account manager with a 24-hour SLA, and PO/invoicing. Priced per
+    user, billed annually. A 14-day trial is available with no credit card.
+  entries:
+  - label: Per User Per Month (billed annually)
+    name: ultimate_seat
+    type: flat
+    metric: users
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '$11 per user per month (billed annually)'
+    userMultiplied: true
+  elements:
+  - name: Unlimited Workspaces and OpenAPI Syncs
+  - name: User and License Management
+  - name: Audit Logs
+  - name: SSO and SCIM
+  - name: Dedicated Account Manager (24h SLA)
+  - name: Custom ToS and DPA, PO and Invoicing
+- id: bruno-enterprise
+  name: Enterprise Support
+  type: enterprise
+  description: >-
+    Enterprise-grade standardization, integrations, and support for larger
+    teams deploying Bruno at scale, with dedicated account management and SLAs.
+    Contact Bruno.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Standardized Enterprise Deployment
+  - name: Dedicated Account Management and SLAs
+  - name: Custom Terms
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
