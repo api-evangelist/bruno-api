@@ -34,6 +34,14 @@ tags:
 - API Client
 - API Testing
 - Developer Tools
+- Open-Source
+- Git-Native
+- CLI
+- Postman Alternative
+tags_raw:
+- API Client
+- API Testing
+- Developer Tools
 - Open Source
 - Git-Native
 - CLI
@@ -70,6 +78,11 @@ apis:
   name: Bru Markup Language (.bru)
   tags:
   - File Format
+  - Collection
+  - Git-Native
+  - Open-Source
+  tags_raw:
+  - File Format
   - Collections
   - Git-Native
   - Open Source
@@ -90,6 +103,11 @@ apis:
 - aid: bruno-api:bruno-opencollection
   name: OpenCollection Format
   tags:
+  - Collection
+  - Open Standard
+  - YAML
+  - Portability
+  tags_raw:
   - Collections
   - Open Standard
   - YAML
