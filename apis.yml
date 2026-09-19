@@ -54,7 +54,7 @@ tags_raw:
 - CLI
 - Postman Alternative
 created: '2026-07-11'
-modified: '2026-07-11'
+modified: '2026-09-18'
 specificationVersion: '0.23'
 apis:
 - aid: bruno-api:bruno-api-client
@@ -162,12 +162,12 @@ apis:
     to a Bruno-hosted cloud. Modeled here as a capability area; it is not a documented public API.
 - aid: bruno-api:api-client
   name: Bruno API Client
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   description: Bruno is an open-source API client for exploring and testing REST, GraphQL, and gRPC APIs. Collections
     are stored as plain text Bru files on the filesystem, enabling Git-based version control, team collaboration
     through pull requests, and co-location with application code. Bruno supports JavaScript scripting, environment
     variables, collection-level authentication, and CI/CD execution via Bruno CLI. No cloud account required.
   humanURL: https://www.usebruno.com
-  baseURL: https://www.usebruno.com
   tags:
   - API Client
   - API Testing
@@ -197,9 +197,11 @@ apis:
     url: https://www.usebruno.com/downloads
   - type: Pricing
     url: https://www.usebruno.com/pricing
-  - url: graphql/bruno-graphql.md
-    type: GraphQL
 common:
+- type: TrustCenter
+  url: security/bruno-api-trust-center.yml
+- type: DomainSecurity
+  url: security/bruno-api-domain-security.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/usebruno
 - type: Website
@@ -218,6 +220,59 @@ common:
   type: Blog
 - type: Blog
   url: https://www.usebruno.com/blog
+- type: AgentCard
+  url: a2a/bruno-api-a2a.yml
+- type: MCPServer
+  url: mcp/bruno-api-mcp.yml
+- type: WellKnown
+  url: well-known/bruno-api-well-known.yml
+- type: LLMsTxt
+  url: llms/bruno-api-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Packages
+  url: packages/bruno-api-packages.yml
+- type: SDKs
+  url: packages/bruno-api-packages.yml
+- type: CLI
+  url: cli/bruno-api-cli.yml
+- type: ChangeLog
+  url: changelog/bruno-api-changelog.yml
+- type: ReleaseNotes
+  url: https://www.usebruno.com/changelog
+- type: Lifecycle
+  url: lifecycle/bruno-api-lifecycle.yml
+- type: Conformance
+  url: conformance/bruno-api-conformance.yml
+- type: Compliance
+  url: security/bruno-api-trust-center.yml
+- type: Security
+  url: security/bruno-api-vulnerability-disclosure.yml
+- type: VulnerabilityDisclosure
+  url: security/bruno-api-vulnerability-disclosure.yml
+- type: DeveloperPortal
+  url: https://docs.usebruno.com/
+- type: GettingStarted
+  url: https://docs.usebruno.com/introduction/getting-started
+- type: Pricing
+  url: https://www.usebruno.com/pricing
+- type: SignUp
+  url: https://www.usebruno.com/start-trial
+- type: Support
+  url: https://www.usebruno.com/support
+- type: Community
+  url: https://www.usebruno.com/community
+- type: Roadmap
+  url: https://www.usebruno.com/roadmap
+- type: TermsOfService
+  url: https://www.usebruno.com/terms
+- type: PrivacyPolicy
+  url: https://www.usebruno.com/privacy-policy
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-18'
+  status: enriched
+  artifacts_added: 17
+  pass: local-v3
