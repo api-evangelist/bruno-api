@@ -1,0 +1,103 @@
+generated: '2026-09-18'
+method: searched
+source: https://docs.usebruno.com/bru-cli/overview
+provider: Bruno
+providerId: bruno-api
+name: Bruno CLI (bru)
+description: >-
+  `bru` is Bruno's first-party command-line runner. It executes a single request or an entire
+  collection headlessly - the same runtime the desktop app uses - and is the way Bruno runs in
+  CI/CD. Since v3.0.0 it defaults to a Safe Mode JavaScript sandbox; Developer Mode
+  (filesystem access, external npm packages) must be requested explicitly.
+binary: bru
+package: '@usebruno/cli'
+version: 4.1.0
+docs: https://docs.usebruno.com/bru-cli/overview
+install:
+- method: npm
+  command: npm install -g @usebruno/cli
+- method: pnpm
+  command: pnpm install -g @usebruno/cli
+- method: yarn
+  command: yarn global add @usebruno/cli
+- method: docker
+  command: docker pull usebruno/cli:latest
+  note: Official Docker Verified Publisher image; ghcr.io/usebruno/cli mirrors it. Entrypoint is `bru`, collection mounted at /bruno.
+  docs: https://docs.usebruno.com/bru-cli/docker
+- method: github-action
+  command: usebruno/bruno-cli-action
+  docs: https://docs.usebruno.com/bru-cli/github-actions/overview
+requirements: Node.js 18 LTS or higher (not needed when running the Docker image).
+commands:
+- name: bru run
+  description: Run a collection, a folder, or a single request file.
+  examples:
+  - bru run
+  - bru run ./api-tests
+  - bru run ./api-tests/login.bru
+  - docker run --rm -v $(pwd):/bruno usebruno/cli run
+- name: bru run -h
+  description: Print the full option list.
+option_groups:
+- name: Basic
+  options:
+  - flag: -h, --help
+    description: Output usage information.
+  - flag: --version
+    description: Output the version number.
+- name: Setup
+  options:
+  - flag: --env [string]
+    description: Environment to run with.
+  - flag: --global-env [string]
+    description: Global/workspace-level environment to run with.
+  - flag: --workspace-path [string]
+    description: Workspace path when the collection is not at the root.
+  - flag: --env-var [string]
+    description: Overwrite a single collection-level environment variable; repeatable.
+  - flag: --global-env-var [string]
+    description: Overwrite a single global environment variable; requires --global-env.
+  - flag: --env-file [string]
+    description: Path to a .bru or .json environment file for the run.
+  - flag: --sandbox [string]
+    description: 'JavaScript execution sandbox: safe (default since v3.0.0) or developer.'
+  - flag: --csv-file-path
+    description: CSV data file to drive a data-driven run.
+  - flag: --json-file-path
+    description: JSON data file to drive a data-driven run.
+  - flag: --iteration-count [number]
+    description: Number of times to run the collection.
+- name: Reporting
+  docs: https://docs.usebruno.com/bru-cli/builtInReporters
+  options:
+  - flag: --reporter-json <file>
+    description: Write a JSON report.
+  - flag: --reporter-junit <file>
+    description: Write a JUnit XML report (classname is the collection path as of v4).
+  - flag: --reporter-html <file>
+    description: Write an HTML report.
+  - flag: --reporter-skip-headers "<h1>" "<h2>"
+    description: Omit named headers from the report.
+  - flag: --reporter-skip-all-headers
+    description: Omit all headers from the report.
+- name: Configuration
+  docs: https://docs.usebruno.com/bru-cli/proxyConfiguration
+  options:
+  - flag: proxy / mTLS configuration
+    description: Proxy settings and client certificates for CLI runs.
+  - flag: secret managers
+    description: Fetch secrets from HashiCorp Vault, AWS Secrets Manager, Azure Key Vault and Google Cloud Secret Manager during a run.
+    docs: https://docs.usebruno.com/bru-cli/secret-managers
+ci_integrations:
+- name: GitHub Actions
+  docs: https://docs.usebruno.com/bru-cli/github-actions/overview
+  repo: https://github.com/usebruno/bruno-cli-action
+- name: Jenkins
+  docs: https://docs.usebruno.com/bru-cli/jenkins
+- name: Azure DevOps Pipelines
+  docs: https://docs.usebruno.com/bru-cli/azure-devops
+- name: Docker
+  docs: https://docs.usebruno.com/bru-cli/docker
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

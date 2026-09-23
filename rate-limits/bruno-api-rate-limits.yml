@@ -4,8 +4,13 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Bruno
 providerId: bruno-api
 created: '2026-07-11'
-modified: '2026-07-11'
-reconciled: false
+modified: '2026-09-18'
+generated: '2026-09-18'
+method: searched
+source: https://www.usebruno.com/pricing
+reconciled: true
+reconciled_on: '2026-09-18'
+limit_count: 0
 tags:
 - API Client
 - API Testing
@@ -23,8 +28,12 @@ description: >-
   entitlements rather than API rate limits.
 notes: >-
   There is no Bruno base URL, no 429 behavior owned by Bruno, and no per-minute
-  API quota, because Bruno publishes no API. Plan limits below reflect the
-  pricing page at review time; verify during reconciliation.
+  API quota, because Bruno publishes no API - limit_count is therefore an honest
+  0 rather than an omission. api.usebruno.com does not resolve (DNS failure,
+  probed 2026-09-18), confirming there is no API host to rate limit. The plan
+  entitlements below were re-read from https://www.usebruno.com/pricing on
+  2026-09-18: OpenAPI syncs are now unlimited on Pro as well as Ultimate, and
+  workspaces are unlimited on both paid tiers.
 sources:
 - https://www.usebruno.com/pricing
 - https://docs.usebruno.com/
@@ -41,17 +50,17 @@ limits:
   scope: account
   metric: workspaces
   limit: 2
-  notes: The free Open Source tier includes 2 workspaces; Ultimate is unlimited.
-- name: OpenAPI Syncs (Pro)
+  notes: The free Open Source tier includes 2 workspaces; Pro and Ultimate are unlimited.
+- name: OpenAPI Syncs (Open Source)
   scope: account
   metric: syncs
   limit: 5 per month
-  notes: The Pro tier includes 5 OpenAPI syncs per month; Ultimate is unlimited.
+  notes: The free tier includes 5 OpenAPI syncs per month; Pro and Ultimate are unlimited.
 - name: License Admins (Pro)
   scope: account
   metric: admins
   limit: 2
-  notes: The Pro tier includes 2 license admins.
+  notes: The Pro tier includes 2 license admins; Ultimate is unlimited.
 - name: Outbound Request Throttling
   scope: target-api
   metric: requests

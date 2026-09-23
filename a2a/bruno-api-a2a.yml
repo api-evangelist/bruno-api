@@ -1,0 +1,63 @@
+generated: '2026-09-18'
+method: probed
+source: https://docs.usebruno.com/.well-known/agent-card.json
+provider: Bruno
+providerId: bruno-api
+name: Bruno Docs
+description: >-
+  Bruno publishes a real A2A Agent Card at the canonical /.well-known/agent-card.json
+  path on its documentation host. The card describes the "Bruno Docs" agent surface and
+  advertises a single skill (bruno) whose instructions are served as a markdown Agent Skill
+  at /.well-known/agent-skills/bruno/skill.md on the same host. The card was fetched
+  verbatim to a2a/bruno-api-agent-card.json and is NOT authored by API Evangelist.
+discovery:
+  path: /.well-known/agent-card.json
+  canonical: true
+  host: docs.usebruno.com
+x-evidence:
+  fetched: '2026-09-18'
+  url: https://docs.usebruno.com/.well-known/agent-card.json
+  http_status: 200
+  content_type: application/json
+card:
+  file: a2a/bruno-api-agent-card.json
+  name: Bruno Docs
+  url: https://docs.usebruno.com/
+  version: 1.0.0
+  protocolVersion: '0.3'
+  preferredTransport: HTTP+JSON
+  provider_organization: Bruno Docs
+  documentationUrl: https://docs.usebruno.com/
+  capabilities:
+    streaming: false
+    pushNotifications: false
+  skills:
+  - id: bruno
+    name: bruno
+    url: https://docs.usebruno.com/.well-known/agent-skills/bruno/skill.md
+grade: conformant
+grade_basis: >-
+  Graded against A2A 1.0.0 hard checks: capabilities is an OBJECT (pass), protocolVersion is
+  present (pass, "0.3"), skills is an ARRAY (pass). The optional fields that usually separate
+  near-conformant from conformant are all present too: preferredTransport (HTTP+JSON),
+  defaultInputModes (text/plain) and defaultOutputModes (text/plain).
+deviations:
+- field: protocolVersion
+  note: >-
+    Declares protocol version 0.3 rather than 1.0.0; the card shape is nonetheless
+    1.0.0-conformant on every hard check.
+- field: supportedInterfaces
+  note: >-
+    supportedInterfaces[] points back at the documentation site root rather than a distinct
+    A2A JSON-RPC endpoint; the callable machine surface Bruno actually serves on this host is
+    the MCP endpoint at https://docs.usebruno.com/mcp (see mcp/bruno-api-mcp.yml), which is
+    the common pattern for docs-platform-issued cards.
+notes:
+- The card is served from Bruno's own documentation host (docs.usebruno.com), which the
+  company controls; the underlying docs platform is Mintlify (see well-known/bruno-api-mcp.json,
+  whose canonical URL resolves to a mintlify.me origin).
+- The pre-0.3 path /.well-known/agent.json returned 404 on this host, and every
+  /.well-known/* path on www.usebruno.com and blog.usebruno.com returned 404.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

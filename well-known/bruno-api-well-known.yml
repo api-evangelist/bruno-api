@@ -1,0 +1,93 @@
+generated: '2026-09-18'
+method: probed
+source: live probes of /.well-known/* on every host in apis.yml
+provider: Bruno
+providerId: bruno-api
+description: 'Well-known document probe across every host this record knows: the registrable domain (usebruno.com),
+  www, the documentation host (docs.usebruno.com) and the blog host (blog.usebruno.com). Bruno serves
+  real documents only on the documentation host: an A2A agent card, an MCP discovery document, and a markdown
+  Agent Skill. No security.txt, openid-configuration, oauth-authorization-server, api-catalog or ai-plugin.json
+  is served on any host. api.usebruno.com does not resolve (DNS failure), so Bruno operates no API host.'
+hosts:
+- host: docs.usebruno.com
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: application/json
+    file: a2a/bruno-api-agent-card.json
+    note: Real A2A Agent Card; graded conformant in a2a/bruno-api-a2a.yml.
+  - path: /.well-known/mcp.json
+    status: 200
+    content_type: application/json
+    file: bruno-api-mcp.json
+    note: MCP discovery document naming a public, unauthenticated HTTP MCP server. The URL it publishes
+      is the Mintlify origin; the same server answers on Bruno's own host at https://docs.usebruno.com/mcp
+      (probed, tools/list 200).
+  - path: /.well-known/agent-skills/bruno/skill.md
+    status: 200
+    content_type: text/markdown
+    file: skills/bruno-api-bruno.md
+    note: Provider-published Agent Skill, saved verbatim.
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: www.usebruno.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: usebruno.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: blog.usebruno.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+notes:
+- Bruno publishes a security contact and a security program page at https://www.usebruno.com/security
+  (200) but does NOT serve an RFC 9116 security.txt, so no SecurityTxt pointer is emitted.
+- api.usebruno.com does not resolve; Bruno runs no hosted API host.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

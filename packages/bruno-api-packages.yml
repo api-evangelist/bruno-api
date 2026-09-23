@@ -1,0 +1,126 @@
+generated: '2026-09-18'
+method: searched
+source: registry.npmjs.org, hub.docker.com, marketplace.visualstudio.com, https://docs.usebruno.com/bru-cli/installation
+provider: Bruno
+providerId: bruno-api
+description: >-
+  First-party Bruno distributions. Bruno publishes no hosted API, so these are the runtime and
+  library packages developers actually install: the CLI collection runner, the libraries that
+  parse and execute .bru / OpenCollection files, the official Docker images, the VS Code
+  extension and the GitHub Action. Versions and dates are read from each registry's metadata
+  endpoint on 2026-09-18.
+packages:
+- name: '@usebruno/cli'
+  registry: npm
+  url: https://www.npmjs.com/package/@usebruno/cli
+  official: true
+  language: javascript
+  version: 4.1.0
+  published: '2026-09-01'
+  install: npm install -g @usebruno/cli
+  description: The `bru` command-line runner - executes requests and whole collections headlessly with JSON, JUnit and HTML reporters.
+  repository: https://github.com/usebruno/bruno
+- name: '@usebruno/js'
+  registry: npm
+  url: https://www.npmjs.com/package/@usebruno/js
+  official: true
+  language: javascript
+  version: 0.51.0
+  published: '2026-09-01'
+  description: The script, test, vars and assert runtimes used by the app and the CLI.
+- name: '@usebruno/lang'
+  registry: npm
+  url: https://www.npmjs.com/package/@usebruno/lang
+  official: true
+  language: javascript
+  version: 0.39.0
+  published: '2026-09-01'
+  description: Language utilities for reading and writing `.bru` files - the parser for Bruno's collection format.
+- name: '@usebruno/schema'
+  registry: npm
+  url: https://www.npmjs.com/package/@usebruno/schema
+  official: true
+  language: javascript
+  version: 0.29.0
+  published: '2026-09-01'
+  description: The schema definition for Bruno collections.
+- name: '@usebruno/filestore'
+  registry: npm
+  url: https://www.npmjs.com/package/@usebruno/filestore
+  official: true
+  language: javascript
+  version: 0.12.0
+  published: '2026-09-01'
+  description: File storage and parsing package used by the Bruno API client.
+- name: '@usebruno/converters'
+  registry: npm
+  url: https://www.npmjs.com/package/@usebruno/converters
+  official: true
+  language: javascript
+  version: 0.23.0
+  published: '2026-09-01'
+  description: Converts collections between formats (Postman, Insomnia, OpenAPI, .bru, OpenCollection YAML).
+- name: '@usebruno/common'
+  registry: npm
+  url: https://www.npmjs.com/package/@usebruno/common
+  official: true
+  language: javascript
+  version: 0.25.0
+  published: '2026-09-01'
+  description: Common utilities shared across the Bruno app, Electron shell and CLI.
+- name: '@usebruno/query'
+  registry: npm
+  url: https://www.npmjs.com/package/@usebruno/query
+  official: true
+  language: javascript
+  version: 0.2.2
+  published: '2026-04-22'
+  description: Query helper with deep navigation, filter and map support.
+- name: usebruno/cli
+  registry: dockerhub
+  url: https://hub.docker.com/r/usebruno/cli
+  official: true
+  version: '4.1'
+  published: '2026-09-02'
+  install: docker pull usebruno/cli:latest
+  description: >-
+    Official Docker Verified Publisher image for the Bruno CLI; alpine (default, node:22-alpine)
+    and debian (node:22-slim) variants, linux/amd64 and linux/arm64, mirrored to
+    ghcr.io/usebruno/cli. Tag dates read from the Docker Hub tags API.
+  docs: https://docs.usebruno.com/bru-cli/docker
+- name: bruno-api-client.bruno
+  registry: vscode-marketplace
+  url: https://marketplace.visualstudio.com/items?itemName=bruno-api-client.bruno
+  official: true
+  version: 6.0.0
+  published: '2026-09-16'
+  description: Bruno for VS Code - work with Bruno collections without leaving the editor.
+  repository: https://github.com/usebruno/bruno-vscode
+- name: usebruno/bruno-cli-action
+  registry: github-actions
+  url: https://github.com/usebruno/bruno-cli-action
+  official: true
+  version: null
+  published: null
+  note: >-
+    Official GitHub Action runner for the Bruno CLI. No registry metadata endpoint answers for
+    GitHub Marketplace actions and the repo publishes no release tag, so version/published are
+    recorded as null - checked, nothing to record.
+  docs: https://docs.usebruno.com/bru-cli/github-actions/overview
+- name: '@usebruno/mcp'
+  registry: none
+  url: https://github.com/usebruno/bruno-mcp
+  official: true
+  version: 0.1.0
+  published: null
+  note: >-
+    Version read from package.json in the repository; the package is NOT published to npm as of
+    2026-09-18 (registry.npmjs.org/@usebruno/mcp returns "Not found"), so there is no publish
+    date to record and installation is build-from-source. See mcp/bruno-api-mcp.yml.
+distribution_channels:
+- name: Desktop downloads
+  url: https://www.usebruno.com/downloads
+  note: macOS (DMG, PKG, Homebrew), Windows (EXE, MSI, winget, Chocolatey, Scoop), Linux (AppImage, deb, rpm, APT, Flatpak, Snap).
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

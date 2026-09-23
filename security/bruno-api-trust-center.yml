@@ -1,0 +1,40 @@
+generated: '2026-09-18'
+method: searched
+probe: true
+source: https://www.usebruno.com/security
+url: https://trust.usebruno.com
+provider: Bruno
+providerId: bruno-api
+description: >-
+  Bruno runs a hosted trust center at trust.usebruno.com and summarises its security posture on
+  its own site at /security. The headline claim is SOC 2 Type I certification, independently
+  audited against the AICPA Trust Services Criteria, with the report, subprocessors and security
+  documentation available through the trust center.
+trust_center:
+  url: https://trust.usebruno.com
+  http_status: 200
+  summary_page: https://www.usebruno.com/security
+  provides: [SOC 2 report, subprocessors, security documentation]
+certifications:
+- name: SOC 2 Type I
+  status: certified
+  auditor_criteria: AICPA Trust Services Criteria
+  evidence: https://www.usebruno.com/security
+posture:
+  data_residency: >-
+    Local-first - collections, environments and secrets stay on the developer's device; Bruno
+    stores no customer API data in a cloud.
+  external_connections: >-
+    Outbound-only HTTPS (TLS 1.2+) on port 443 for licence-key validation and update checks;
+    the licence call sends IP address, licence key, hashed device ID and Bruno version, and no
+    project data. No inbound ports are opened.
+  encryption: TLS 1.2 or higher on all connections.
+evidence:
+- source: https://www.usebruno.com/security
+  http_status: 200
+  keywords: [soc 2 type i, trust center, aicpa trust services criteria, local-first]
+- source: https://trust.usebruno.com
+  http_status: 200
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

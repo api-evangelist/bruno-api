@@ -1,0 +1,31 @@
+# Front Door AI Index — bruno-api — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: bruno-api
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.usebruno.com
+  final_host: www.usebruno.com
+  ownership: own
+  owner: bruno-api
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 25
+  host_score: 25
+  density: 2.99
+  words: 8356
+  tiers:
+    agentic: 6
+    core: 11
+    model: 8
+  ambiguous: 15
+  top_terms:
+    AI: 11
+    agent: 11
+    Claude: 8
+    automation: 4
+    AI agent: 2
+    MCP: 2
+    prompts: 2

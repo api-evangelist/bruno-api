@@ -1,0 +1,74 @@
+generated: '2026-09-18'
+method: searched
+source: https://www.usebruno.com/changelog, https://docs.usebruno.com/, https://github.com/usebruno/bruno/releases
+provider: Bruno
+providerId: bruno-api
+description: >-
+  Versioning and change-communication practice for Bruno. Bruno ships a desktop application, a
+  CLI and a set of npm libraries rather than a hosted API, so its lifecycle signals are release
+  tags, versioned documentation and per-release breaking-change notices - not API version paths,
+  Sunset headers or an uptime page.
+versioning:
+  scheme: semver
+  current: 4.1.0
+  current_date: '2026-08-20'
+  surface: application + CLI + npm packages
+  note: >-
+    The desktop app and CLI carry the headline version (v4.1.0); the supporting npm packages
+    (@usebruno/js, @usebruno/lang, @usebruno/schema, ...) version independently and were all
+    republished 2026-09-01.
+  documentation_versions:
+  - label: current (v4)
+    url: https://docs.usebruno.com/
+  - label: v3
+    url: https://docs.usebruno.com/v3/
+  - label: v2
+    url: https://docs.usebruno.com/v2/
+  documentation_versions_note: >-
+    Documentation for superseded major versions stays online under /v2/ and /v3/ paths, so a
+    team pinned to an older release still has a matching reference.
+release_notes:
+  url: https://www.usebruno.com/changelog
+  github: https://github.com/usebruno/bruno/releases
+  artifact: changelog/bruno-api-changelog.yml
+  subscribe: https://www.usebruno.com/changelog
+breaking_changes:
+  policy: per-release notice
+  practice: >-
+    Breaking changes are called out inline in the documentation and changelog at the point of
+    use rather than in a standalone policy document.
+  examples:
+  - version: 3.0.0
+    change: The CLI runtime default changed from Developer Mode to Safe Mode; Developer Mode features (filesystem access, external npm packages) now require --sandbox=developer.
+    evidence: https://docs.usebruno.com/bru-cli/overview
+  - version: 4.0.0
+    change: The JUnit reporter's <testcase> classname changed from the request URL to the collection path, breaking Xray/Azure DevOps mappings keyed on the old value.
+    evidence: https://docs.usebruno.com/bru-cli/builtInReporters
+  - version: 4.0.0
+    change: Secret Manager configuration moved out of secrets.json into environment files, with automatic migration on collection open and documented deprecation guidance for the legacy syntax.
+    evidence: https://docs.usebruno.com/secrets-management/secret-managers/migration
+deprecation_policy:
+  published: false
+  note: >-
+    No standalone deprecation or end-of-life policy is published. Deprecations are handled
+    per-feature with a migration guide (the secrets.json migration is the current example) and
+    the discontinued one-time "Golden Edition" licence, which remains valid for existing
+    holders, was retired without a dated sunset schedule.
+status_page:
+  published: false
+  probed: https://status.usebruno.com
+  http_status: 404
+  note: >-
+    Bruno operates no hosted service that could have uptime - collections, execution and secrets
+    stay on the user's machine - so there is nothing for a status page to report. The only
+    outbound call the app makes is licence-key validation, documented at
+    https://www.usebruno.com/security.
+sla:
+  published: true
+  note: Support SLAs are sold with the paid tiers - 48-hour response on Pro, 24-hour on Ultimate, community-only on Open Source.
+  evidence: https://www.usebruno.com/pricing
+roadmap: https://www.usebruno.com/roadmap
+support: https://www.usebruno.com/support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

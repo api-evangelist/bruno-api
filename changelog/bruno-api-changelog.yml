@@ -1,0 +1,58 @@
+generated: '2026-09-18'
+method: searched
+source: https://www.usebruno.com/changelog
+provider: Bruno
+providerId: bruno-api
+description: >-
+  Bruno publishes a dated, public changelog on its own site and mirrors each release as a
+  tagged GitHub release on usebruno/bruno. Releases are semver on the desktop app; the npm
+  packages (@usebruno/cli et al) version independently. Recent window only - the site carries
+  the full history.
+scheme: semver
+current_version: 4.1.0
+current_version_date: '2026-08-20'
+cadence: >-
+  Minor/patch releases roughly every 2-4 weeks through 2026 (v3.5.0 2026-06-23, v3.5.1
+  2026-07-02, v3.5.2 2026-07-13, v3.5.3 2026-07-20, v4.0.0 2026-07-23, v4.1.0 2026-08-20).
+sources:
+- https://www.usebruno.com/changelog
+- https://github.com/usebruno/bruno/releases
+subscribe: https://www.usebruno.com/changelog
+entries:
+- version: 4.1.0
+  date: '2026-08-20'
+  breaking: false
+  highlights:
+  - Rich text documentation editor with syntax-highlighted code blocks.
+  - Google Cloud Secret Manager added as an external secret provider.
+  - One-click migration of collections from .bru to the OpenCollection YAML format.
+  - Default environment per collection; app-level client certificates; Git UI branch selection on pull/push.
+  - 'Security hardening: IPC file operations restricted to the collection boundary, and Authorization headers no longer forwarded on cross-origin redirects.'
+  - Roughly 50 bug fixes across Postman import/export, OpenAPI import/export, the runner, WebSocket and secret handling.
+- version: 4.0.0
+  date: '2026-07-23'
+  breaking: true
+  highlights:
+  - 'BYOK AI: bring-your-own-key support for OpenAI-compatible providers, an AI sidebar, AI-assisted docs/scripts/tests, and an AI security tab.'
+  - Apps in Bruno - request- and collection-level interactive API experiences.
+  - Typed variables (string, number, boolean, object) and separation of secrets from regular environment variables.
+  - Secret Manager revamp - configuration moved from secrets.json into environment files, with automatic migration and deprecation guidance for the legacy syntax.
+  - Major redesign of Collection Docs with page-based shareable URLs, search and an environment switcher.
+  - Akamai EdgeGrid authentication (beta).
+  breaking_changes:
+  - 'CLI JUnit reporter: the <testcase> classname attribute changed from the request URL to the collection path, breaking Xray/Azure DevOps mappings that keyed on the old format.'
+- version: 3.5.3
+  date: '2026-07-20'
+  breaking: false
+- version: 3.5.2
+  date: '2026-07-13'
+  breaking: false
+- version: 3.5.1
+  date: '2026-07-02'
+  breaking: false
+- version: 3.5.0
+  date: '2026-06-23'
+  breaking: false
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -4,7 +4,10 @@ schema: https://www.finops.org/framework/
 provider: Bruno
 providerId: bruno-api
 created: '2026-07-11'
-modified: '2026-07-11'
+modified: '2026-09-18'
+generated: '2026-09-18'
+method: derived
+source: plans/bruno-api-plans-pricing.yml + https://www.usebruno.com/pricing
 reconciled: false
 tags:
 - API Client

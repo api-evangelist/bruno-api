@@ -1,0 +1,28 @@
+generated: '2026-09-18'
+method: searched
+source: https://docs.usebruno.com/.well-known/agent-skills/bruno/skill.md
+provider: Bruno
+providerId: bruno-api
+description: >-
+  Bruno PUBLISHES its own Agent Skill and serves it from its documentation host at the
+  /.well-known/agent-skills/ path referenced by its A2A agent card. The file here is that
+  skill saved VERBATIM - API Evangelist authored none of it. There is no Bruno HTTP API to
+  ground additional generated skills in, so no derived skills are added.
+skills:
+- file: skills/bruno-api-bruno.md
+  name: bruno
+  method: searched
+  source: https://docs.usebruno.com/.well-known/agent-skills/bruno/skill.md
+  http_status: 200
+  content_type: text/markdown
+  fetched: '2026-09-18'
+  description: >-
+    Use when building, testing, and collaborating on API collections - sending REST, GraphQL,
+    gRPC, WebSocket or SOAP requests, writing tests, managing environments and secrets, running
+    collections via the CLI in CI/CD, or collaborating on API workflows through Git.
+  api: bruno-api:bruno-api-client
+  surface: local-tool
+  referenced_by: a2a/bruno-api-agent-card.json (skills[0].url)
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

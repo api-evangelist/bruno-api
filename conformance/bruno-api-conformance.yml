@@ -1,0 +1,120 @@
+generated: '2026-09-18'
+method: searched
+source: https://docs.usebruno.com/llms.txt and the linked documentation pages
+provider: Bruno
+providerId: bruno-api
+description: >-
+  Bruno publishes no HTTP API of its own, so this is not a conformance claim about a served
+  contract. It records the specifications the Bruno CLIENT implements - the formats it reads
+  and writes and the authentication schemes it speaks - each with the documentation page that
+  states it, plus the one published compliance certification. Absence of a claim here means we
+  found no documentation asserting it, not that it is unsupported.
+subject: client-implementation
+conformance:
+- id: opencollection
+  name: OpenCollection
+  conforms: true
+  evidence: https://docs.usebruno.com/opencollection-yaml/overview
+  note: >-
+    Bruno's open, YAML-based collection format, specified at https://www.opencollection.com and
+    now the recommended format for new collections; a structure reference and samples are
+    published alongside it. This is the domain standard Bruno declares for its own market
+    (API collection interchange) - it authors the specification rather than merely consuming one.
+  domain_standard: true
+- id: bru-lang
+  name: Bru markup language (.bru)
+  conforms: true
+  evidence: https://docs.usebruno.com/bru-lang/overview
+  note: Bruno's original plain-text collection format; a documented migration path to OpenCollection YAML exists.
+- id: openapi
+  name: OpenAPI 3.x
+  conforms: true
+  evidence: https://docs.usebruno.com/open-api/openapi-sync
+  note: >-
+    Imports OpenAPI specs into collections, keeps a collection aligned with a spec via OpenAPI
+    Sync (a paid-tier entitlement, 5/month on Pro and unlimited on Ultimate), generates
+    collections to OAS, and can drive mock servers from a spec.
+- id: graphql
+  name: GraphQL
+  conforms: true
+  evidence: https://docs.usebruno.com/send-requests/graphql/overview
+  note: Sends GraphQL queries and mutations with variables and an interactive schema-explorer query builder. Bruno CONSUMES GraphQL; it serves no GraphQL API of its own.
+- id: grpc
+  name: gRPC / Protocol Buffers
+  conforms: true
+  evidence: https://docs.usebruno.com/send-requests/grpc/overview
+  note: Unary and streaming gRPC requests driven by user-supplied .proto files.
+- id: websocket
+  name: WebSocket
+  conforms: true
+  evidence: https://docs.usebruno.com/send-requests/websocket/overview
+- id: soap
+  name: SOAP
+  conforms: true
+  evidence: https://docs.usebruno.com/send-requests/soap/soap-request
+- id: sse
+  name: Server-Sent Events
+  conforms: true
+  evidence: https://docs.usebruno.com/send-requests/REST/sse
+- id: oauth2
+  name: OAuth 2.0
+  conforms: true
+  evidence: https://docs.usebruno.com/auth/oauth2-2.0/overview
+  note: Authorization Code, Client Credentials and Password Credentials grants, collection-level configuration, and system-browser support.
+- id: oauth1
+  name: OAuth 1.0
+  conforms: true
+  evidence: https://docs.usebruno.com/auth/oauth1
+- id: http-basic-bearer
+  name: HTTP Basic and Bearer authentication
+  conforms: true
+  evidence: https://docs.usebruno.com/auth/overview
+- id: http-digest
+  name: HTTP Digest access authentication
+  conforms: true
+  evidence: https://docs.usebruno.com/auth/digest
+- id: ntlm
+  name: NTLM
+  conforms: true
+  evidence: https://docs.usebruno.com/auth/ntlm
+- id: aws-sigv4
+  name: AWS Signature v4
+  conforms: true
+  evidence: https://docs.usebruno.com/auth/aws-signature
+- id: akamai-edgegrid
+  name: Akamai EdgeGrid
+  conforms: true
+  evidence: https://docs.usebruno.com/auth/akamai-edgegrid
+  note: Added in v4.0.0, documented as beta.
+- id: mtls
+  name: Mutual TLS / client certificates
+  conforms: true
+  evidence: https://docs.usebruno.com/auth/add-and-manage-certs
+  note: CA and client certificates configurable per collection and, since v4.1.0, globally at app level; also supported in CLI runs.
+- id: junit-xml
+  name: JUnit XML report format
+  conforms: true
+  evidence: https://docs.usebruno.com/bru-cli/builtInReporters
+  note: CLI emits JUnit XML (and JSON and HTML) reports for CI systems.
+- id: soc2
+  name: SOC 2 Type I
+  conforms: true
+  evidence: https://www.usebruno.com/security
+  note: >-
+    "SOC 2 Type I Certified - independently audited against the AICPA Trust Services Criteria",
+    with the report available through the trust center at https://trust.usebruno.com.
+compliance:
+  certifications:
+  - name: SOC 2 Type I
+    status: certified
+    evidence: https://www.usebruno.com/security
+    report_access: https://trust.usebruno.com
+  trust_center: https://trust.usebruno.com
+not_found:
+- id: iso27001
+  note: No ISO 27001 claim found on the security page or trust center landing page.
+- id: hipaa-pci-fedramp
+  note: No HIPAA, PCI DSS or FedRAMP claim found; Bruno stores no customer API data, which is the posture its security page argues.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

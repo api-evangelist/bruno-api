@@ -1,0 +1,92 @@
+generated: '2026-09-18'
+method: probed
+source: https://docs.usebruno.com/mcp (tools/list, HTTP 200) + https://github.com/usebruno/bruno-mcp
+provider: Bruno
+providerId: bruno-api
+name: Bruno MCP surfaces
+status: published
+description: >-
+  Bruno ships TWO distinct, first-party MCP surfaces, and they are not interchangeable.
+  (1) A REMOTE, unauthenticated HTTP MCP server on Bruno's own documentation host that any
+  agent can POST to right now; it answers tools/list with three real tools over the Bruno
+  documentation corpus. (2) A LOCAL stdio MCP server, @usebruno/mcp (repo usebruno/bruno-mcp),
+  which exposes a developer's own Bruno collections - list, read and EXECUTE requests through
+  the Bruno CLI runtime - and must be built and installed on a machine before any agent sees it.
+  The remote one reads docs; the local one runs your APIs.
+deployment:
+  mode: both
+  endpoint: https://docs.usebruno.com/mcp
+  install: git clone https://github.com/usebruno/bruno-mcp && npm install && npm run build  # then: claude mcp add bruno -- node /abs/path/to/dist/index.js
+  package: https://github.com/usebruno/bruno-mcp
+  auth: none
+  verified: probed
+servers:
+- id: bruno-docs-mcp
+  name: Bruno Docs
+  mode: remote
+  transport: http
+  endpoint: https://docs.usebruno.com/mcp
+  auth: none
+  verified: probed
+  x-evidence:
+    fetched: '2026-09-18'
+    method: POST tools/list
+    http_status: 200
+    tools_returned: 3
+  discovery: https://docs.usebruno.com/.well-known/mcp.json
+  origin_note: >-
+    /.well-known/mcp.json publishes the underlying Mintlify origin URL
+    (https://bruno-a6972042.main-kill-isr.mintlify.me/mcp); the identical server answers on
+    Bruno's own host at https://docs.usebruno.com/mcp, which is the endpoint recorded here.
+  tools_file: mcp/bruno-api-docs-mcp-tools.json
+  tools:
+  - name: search_bruno_docs
+    title: Search documentation
+    read_only: true
+    inputs: [query, version]
+  - name: query_docs_filesystem_bruno_docs
+    read_only: true
+    inputs: [command]
+    note: Read-only virtual filesystem over the docs corpus (rg/grep/find/tree/ls/cat/head...).
+  - name: submit_feedback
+    title: Submit documentation feedback
+    read_only: false
+    inputs: [path, feedback]
+- id: bruno-mcp
+  name: Bruno MCP (collections)
+  mode: local-stdio
+  transport: stdio
+  package: '@usebruno/mcp'
+  repository: https://github.com/usebruno/bruno-mcp
+  license: MIT
+  version: 0.1.0
+  registry: none
+  registry_note: >-
+    Declared as @usebruno/mcp in package.json but NOT published to npm as of 2026-09-18
+    (registry.npmjs.org/@usebruno/mcp returns "Not found"); installation is build-from-source.
+  auth: none
+  verified: searched
+  install: node /abs/path/to/bruno-mcp/dist/index.js
+  client_examples:
+  - claude mcp add bruno -- node /abs/path/to/dist/index.js --collection /path/to/collection
+  - 'Cursor / Claude Desktop: {"mcpServers":{"bruno":{"command":"node","args":["/abs/path/to/dist/index.js"]}}}'
+  tools:
+  - name: list_collections
+    read_only: true
+  - name: list_requests
+    read_only: true
+  - name: get_request
+    read_only: true
+  - name: execute_request
+    read_only: false
+    note: Executes one request via `bru run` and returns status, headers, body, assertions and test results.
+  safety_note: >-
+    Bruno's own README warns that execute_request/get_request output carries only the CLI's
+    masking - response headers such as Set-Cookie come back in full - so tool output should be
+    treated as potentially containing live credentials.
+notes:
+- Neither server is a wrapper over a Bruno HTTP API; Bruno publishes no hosted public API.
+  The remote server serves documentation, the local server drives the user's own collections.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
