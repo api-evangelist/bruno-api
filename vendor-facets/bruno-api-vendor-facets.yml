@@ -1,0 +1,214 @@
+# Vendor facets — Bruno. A git-native, offline-first API client: collections live as files in the
+# provider's repo. It moves a provider's score only through what it exports and the provider then
+# hosts: a Postman-format export (the only collection format postman_present reads), an OpenAPI V3
+# export, and a single self-contained HTML docs file with a live Try playground. Its mocks run on
+# localhost and earn nothing.
+vendor: bruno-api
+name: Bruno
+website: https://www.usebruno.com
+areas:
+- api-collections
+registry_keys: []
+rubric_schema_version: 0.22.0
+generated: '2026-09-25'
+features_refreshed: '2026-09-25'
+basis: capability
+summary: >-
+  Bruno hosts nothing for a provider, so every point it can move is a file the provider exports and publishes
+  itself. Exported as a Postman collection it can earn postman_present as the provider's own work; exported
+  as OpenAPI it can create a contract where only a collection existed; generated as HTML docs and deployed
+  on the provider's site it can earn documentation and console pointers. A native .bru or OpenCollection
+  repo earns nothing on its own, and Bruno's mock servers are local-only.
+features:
+- id: git-native-collections
+  name: Git-native collections and the Fetch in Bruno button
+  description: >-
+    Collections are files kept in a Git repo; an embeddable Fetch in Bruno button clones a Git-synced
+    collection (or imports an OpenAPI spec) into a consumer's Bruno.
+  source: https://docs.usebruno.com/git-integration/embed-bruno-collection
+  tier: all
+- id: export-postman
+  name: Export as Postman Collection
+  description: A collection can be shared as a Bruno collection, a Postman collection, or an OpenAPI specification.
+  source: https://docs.usebruno.com/get-started/import-export-data/export-collections
+  tier: all
+- id: export-openapi
+  name: Export to OpenAPI Specification
+  description: Exports a collection as an OpenAPI V3 file.
+  source: https://docs.usebruno.com/open-api/exportOAS.md
+  tier: all
+- id: html-docs
+  name: Generated HTML documentation
+  description: >-
+    Generates one self-contained HTML file from the collection's markdown docs, deployable to GitHub Pages,
+    Netlify, Vercel or a developer portal.
+  source: https://docs.usebruno.com/html-docs/deploy.md
+  tier: all
+- id: docs-playground
+  name: Interactive playground in the generated docs
+  description: >-
+    Every request in the generated docs has a Try button that runs it live from the page, with code samples.
+  source: https://docs.usebruno.com/html-docs/playground.md
+  tier: all
+- id: local-mocks
+  name: Mock servers (beta)
+  description: Runs a mock HTTP server on the user's machine at localhost, from saved examples or an OpenAPI
+    spec.
+  source: https://docs.usebruno.com/mock-servers/overview.md
+  tier: all
+maps:
+- feature: export-postman
+  check: postman_present
+  layer: composite
+  credit: 1.0
+  provider_must: >-
+    Export the collection in Postman format, host it on a surface the provider controls (its repo or site)
+    and declare it as a Postman pointer. A Bruno-format repo does not satisfy the check.
+  note: >-
+    The provider authored the requests; the export changes the format, not the authorship. A collection
+    someone else exported from the provider's spec is derived (0.25).
+  catalog_pass_rate: 0.018
+  facet: developer_ergonomics
+  points: 2
+  baseline_pass_rate: 0.121
+- feature: export-openapi
+  check: contract_present
+  layer: composite
+  creates_artifact: true
+  provider_must: Publish the exported OpenAPI where the provider controls it and register it in apis.yml.
+  note: >-
+    A contract from a collection carries only what the requests carried; downstream contract_quality checks
+    (descriptions, error responses, schemas) score that, not what the API does.
+  catalog_pass_rate: 0.31
+  facet: contract_quality
+  points: 20
+  baseline_pass_rate: 0.949
+  saturated: true
+  saturated_note: >-
+    95% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+- feature: export-openapi
+  check: openapi_3_0
+  layer: composite
+  conditional: true
+  condition: >-
+    The export page says "OpenAPI Specification (OAS) V3" without a minor version; credit only if the
+    file declares 3.0.x.
+  catalog_pass_rate: 0.459
+  facet: contract_quality
+  points: 3
+  baseline_pass_rate: 0.506
+- feature: html-docs
+  check: documentation_present
+  layer: composite
+  provider_must: Deploy the generated HTML on the provider's site and declare it as Documentation.
+  catalog_pass_rate: 0.453
+  facet: developer_ergonomics
+  points: 4
+  baseline_pass_rate: 0.95
+  saturated: true
+  saturated_note: >-
+    95% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+- feature: docs-playground
+  check: console_or_sandbox
+  layer: composite
+  provider_must: Deploy the generated docs and declare the page as Console or Playground in apis.yml.
+  catalog_pass_rate: 0.089
+  facet: developer_ergonomics
+  points: 3
+  baseline_pass_rate: 0.332
+earns_nothing:
+- feature: git-native-collections
+  check: postman_present
+  why: >-
+    A .bru / OpenCollection repo, or a Fetch in Bruno button, is not a Postman collection; the check reads
+    Postman-typed pointers only.
+- feature: local-mocks
+  check: console_or_sandbox
+  why: >-
+    Bruno mocks listen on localhost on the user's machine; nothing public exists to declare as a Sandbox.
+out_of_reach:
+  checks:
+  - llms_txt_published
+  - sdk_count_1
+  - cli_present
+  - agent_skill_present
+  - agent_skills
+  note: >-
+    The fetched pages publish no llms.txt, SDK, provider CLI, Agent Skill or MCP server for the provider's
+    API; Bruno's own CLI runs collections.
+unscored_practice:
+- feature: git-native-collections
+  why: >-
+    A version-controlled, runnable request collection in the provider's repo is a real practice no check
+    reads unless it is Postman-format.
+surface:
+  contract_quality:
+    reachable: 23.0
+    total: 211
+  developer_ergonomics:
+    reachable: 9.0
+    total: 42
+  agent_readiness:
+    reachable: 0
+    total: 139
+hard_rule: >-
+  A model, not a score. Adopting this vendor changes a provider's Kin Score only when the provider publishes
+  the resulting artifacts on its own surface; nothing here writes a score, and no sponsorship or partnership
+  can.
+method: searched
+source:
+- https://docs.usebruno.com/get-started/import-export-data/export-collections
+- https://docs.usebruno.com/git-integration/embed-bruno-collection
+- https://docs.usebruno.com/html-docs/deploy.md
+- https://docs.usebruno.com/html-docs/playground.md
+- https://docs.usebruno.com/mock-servers/overview.md
+- https://docs.usebruno.com/open-api/exportOAS.md
+measured:
+  cohort:
+    method: vendors-catalog.json detections (CNAME / header / URL shape / markup), never a name match
+    detected: 0
+    in_baseline: 0
+  control:
+    basis: providers earning contract_present + documentation_present + api_reference_present, minus the
+      cohort
+    n: 5216
+  metric: >-
+    cohort_pct / control_pct = mean share of the check's points earned (derived and platform credit weighted),
+    x100
+  measured_on: '2026-09-25'
+  status: 'not measurable: 0 detected customers clear the baseline (need 20)'
+simulation:
+  simulated_on: '2026-09-25'
+  rubric: 0.23.0
+  population: providers publishing a contract (contract_present earned), replayable exactly
+  providers: 8977
+  providers_unreplayable: 987
+  providers_moved: 8828
+  conditional_rows: excluded (they depend on what the API already does)
+  composite_lift:
+    median: 2.4
+    p75: 2.4
+    p90: 4.2
+    max: 7.4
+    mean_among_movers: 2.4
+  agent_readiness_lift:
+    median: 0.0
+    p75: 0.0
+    p90: 0.0
+    max: 0.0
+    mean_among_movers: 0.0
+  facet_lift_median_among_movers:
+    developer_ergonomics: 11.9
+    contract_quality: 10.2
+  composite_band_moves:
+    thin -> developing: 870
+    developing -> strong: 362
+    emerging -> thin: 231
+    strong -> exemplar: 107
+    minimal -> emerging: 3
+  agent_readiness_band_moves: {}
+  method: >-
+    each provider's own kin/checks file, the vendor's maps at their stated credit, the scorer's composite
+    formula; from -> to, nothing written

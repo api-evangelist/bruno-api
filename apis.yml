@@ -202,6 +202,8 @@ apis:
   - type: Pricing
     url: https://www.usebruno.com/pricing
 common:
+- type: VendorFacets
+  url: vendor-facets/bruno-api-vendor-facets.yml
 - type: TrustCenter
   url: security/bruno-api-trust-center.yml
 - type: DomainSecurity
