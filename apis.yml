@@ -13,16 +13,21 @@ description: Bruno is an open-source (MIT), git-native API client - a lightweigh
   that run through your own Git provider and identity systems. Bruno does not expose a documented public REST HTTP
   API.
 deliveryModel:
-  model: unknown
-  open_source: unknown
+  model: open-core
+  license: MIT
+  license_evidence:
+    repo: usebruno/bruno
+    spdx: MIT
+    stars: 47189
+  open_source: true
   commercial: true
   callable_host: false
-  label: Delivery model not determined — needs a product licence on record
-  confidence: low
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: medium
   source:
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-license
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -45,10 +50,12 @@ tags:
 - API Client
 - API Testing
 - Developer Tools
-- Open-Source
+- Open Source
 - Git-Native
 - CLI
 - Postman Alternative
+- A2A
+- Testing
 tags_raw:
 - API Client
 - API Testing
@@ -57,6 +64,9 @@ tags_raw:
 - Git-Native
 - CLI
 - Postman Alternative
+- Open-Source
+- A2A
+- Testing
 created: '2026-07-11'
 modified: '2026-09-18'
 specificationVersion: '0.23'
@@ -83,17 +93,19 @@ apis:
     sync of request data. This is a client application, not a hosted API - it has no baseURL or public HTTP endpoints
     of its own.
 - aid: bruno-api:bruno-bru-language
+  x-published: false
   name: Bru Markup Language (.bru)
   tags:
   - File Format
   - Collection
   - Git-Native
-  - Open-Source
+  - Open Source
   tags_raw:
   - File Format
   - Collections
   - Git-Native
   - Open Source
+  - Open-Source
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.usebruno.com/bru-lang/overview
   properties:
@@ -106,6 +118,7 @@ apis:
     variables, so a collection is a folder of human-readable text files reviewable in Git pull requests. A logical
     artifact/file format modeled as a capability area - not an HTTP endpoint.
 - aid: bruno-api:bruno-opencollection
+  x-published: false
   name: OpenCollection Format
   tags:
   - Collection
@@ -146,6 +159,7 @@ apis:
     (filesystem access, external npm packages) require the --sandbox=developer flag. A local CLI tool, not a hosted
     API.
 - aid: bruno-api:bruno-git-collaboration
+  x-published: false
   name: Bruno Git Integration and Sync
   tags:
   - Git
@@ -178,7 +192,7 @@ apis:
   - Git-Native
   - GraphQL
   - gRPC
-  - Open-Source
+  - Open Source
   - REST
   tags_raw:
   - API Client
@@ -188,6 +202,7 @@ apis:
   - gRPC
   - Open Source
   - REST
+  - Open-Source
   properties:
   - type: Documentation
     url: https://docs.usebruno.com
@@ -282,3 +297,10 @@ x-enrichment:
   status: enriched
   artifacts_added: 17
   pass: local-v3
+x-a2a:
+  verified: true
+  probed: '2026-09-26'
+  url: "https://docs.usebruno.com/.well-known/agent-card.json"
+  grade: "conformant"
+  protocol_version: "0.3"
+  control: 404
