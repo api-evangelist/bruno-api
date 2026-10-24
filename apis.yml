@@ -162,6 +162,12 @@ apis:
   x-published: false
   name: Bruno Git Integration and Sync
   tags:
+  - Version Control
+  - Collaboration
+  - Sync
+  - Enterprise
+  - Developer Tools
+  tags_raw:
   - Git
   - Collaboration
   - Sync
